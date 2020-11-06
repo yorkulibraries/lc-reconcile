@@ -1,8 +1,6 @@
-# Library of Congress OpenRefine Reconciliation Service Endpoint
+# Library of Congress OpenRefine Reconciliation Service
 
 ## About
-
-*I stopped using OpenRefine regularly about 4-5 years ago, and I left library technology almost 1 year ago, but I still regularly get emails and issues on these OpenRefine Repositories. So I'm attempting to clean them up for y'all, but no promises on fast repairs or responses.*
 
 An OpenRefine reconciliation service for the Library of Congress Subject Headings (LCSH) and the Library of Congress Name Authority File (LCNAF) available via [id.loc.gov](http://id.loc.gov).
 
@@ -10,20 +8,22 @@ See **Special Notes**, below, to explain the use of the various [id.loc.gov](htt
 
 See the [OpenRefine Standard Reconciliation Service API documentation](https://reconciliation-api.github.io/specs/0.1/) and [my now very old presentation notes on building an OpenRefine Reconciliation Service](https://github.com/cmh2166/c4lMDCpres)to gather some understanding about what this OpenRefine Reconciliation Service attempts to do.
 
-## Hosted Version Instructions
 
-Hosted version at ... somewhere to be determined.
+## Docker instructions
 
-To run the hosted version:
+To build the Docker image, use something like:
 
-1. Start OpenRefine.
-2. Find column you want to reconcile.
-3. Go to Reconcile > Start reconciling...
-4. Click on 'Add standard service button' in bottom left corner of reconciliation dialog box that appears.
-5. Enter the service's URL: enter the above URL - TBD
-6. Click Add Service.
-7. /LoC searches LCNAF and LCSH, other options just search the one chosen.
-8. Click 'start reconciling'.
+```
+docker build -t lc-reconcile .
+```
+
+To run the Docker image:
+
+``` 
+docker run --name lc-reconcile -p 5000:5000 lc-reconcile
+```
+
+The service will be available at: http://localhost:5000
 
 ## Run Locally Instructions
 
