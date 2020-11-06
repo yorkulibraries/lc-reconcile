@@ -46,6 +46,11 @@ refine_to_lc = [
         "id": "Subjects",
         "name": "Library of Congress Subject Headings",
         "index": "/authorities/subjects"
+    },
+    {
+        "id": "GenreForms",
+        "name": "Library of Congress Genre/Form Terms",
+        "index": "/authorities/genreForms"
     }
 ]
 refine_to_lc.append(default_query)
@@ -128,15 +133,20 @@ def search(raw_query, query_type='/lc'):
             if PY3:
                 url = 'http://id.loc.gov/authorities/names/didyoumean/?label=' + urllib.parse.quote(query.encode('utf8'))
                 url2 = 'http://id.loc.gov/authorities/subjects/didyoumean/?label=' + urllib.parse.quote(query.encode('utf8'))
+                url3 = 'http://id.loc.gov/authorities/genreForm/didyoumean/?label=' + urllib.parse.quote(query.encode('utf8'))
             else:
                 url = 'http://id.loc.gov/authorities/names/didyoumean/?label=' + urllib.quote(query.encode('utf8'))
                 url2 = 'http://id.loc.gov/authorities/subjects/didyoumean/?label=' + urllib.quote(query.encode('utf8'))
+                url2 = 'http://id.loc.gov/authorities/genreForm/didyoumean/?label=' + urllib.quote(query.encode('utf8'))
             app.logger.debug("LC Authorities API url is " + url)
             app.logger.debug("LC Authorities API url is " + url2)
+            app.logger.debug("LC Authorities API url is " + url3)
             altresp = requests.get(url)
             altresp2 = requests.get(url2)
+            altresp3 = requests.get(url3)
             altresults = ET.fromstring(altresp.content)
             altresults2 = ET.fromstring(altresp2.content)
+            altresults3 = ET.fromstring(altresp2.content)
     except getopt.GetoptError as e:
         app.logger.warning(e)
         return out
