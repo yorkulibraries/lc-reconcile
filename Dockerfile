@@ -18,7 +18,7 @@ RUN chown -R flaskapp:flaskapp ./
 
 USER flaskapp
 
-EXPOSE 5000
+EXPOSE 6000
 
 ENTRYPOINT ["python"]
 
